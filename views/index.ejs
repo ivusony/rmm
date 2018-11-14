@@ -1,6 +1,69 @@
-<p>index page</p>
+<% include ./partials/header %>
+<% include ./partials/sidebar %>
 
 
-<form action="/logout"  method="GET" >
-    <button type="submit">logout</button>
-</form>
+  <div class= "pusher" style="width: calc(100% - 260px); height: 100%; ;background-color: rgba(241, 241, 241, 0.411)">
+
+    <div class="ui menu">
+        <!-- <a class="item">Browse</a>
+        <a class="item">Submit</a> -->
+        <div class="right menu">
+          <a class="item" href="/logout">Sign out</a>
+        </div>
+      </div>
+
+      <div class="ui  centered grid" style="padding-top:5%">
+        <div class="ui form" style="width: 70%">
+            <div class="four fields">
+              <div class="field">
+                <label>Modem IP address</label>
+                <input type="text" id="modemIP" placeholder=" 10.230.10...." required>
+              </div>
+              <div class="field">
+                <label>Write community</label>
+                <input type="text" id="wCOM" placeholder="7335a..." required>
+              </div>
+              <div class="field">
+                <label>CPE IP address</label>
+                <input type="text" id="cpeIP" placeholder="46.40.27...." required>
+              </div>
+              <div class="field">
+                    <label>Device type</label>
+                    <select name="" id="modemType" required>
+                        <option value=""></option>
+                        <option value="cisco">Cisco EPC3925</option>
+                        <option value="thomson">Thomson THG571</option>
+                    </select>
+                </div>
+            </div>
+          </div>
+      </div>
+      <div class="ui  centered grid" style="padding-top:5%">
+        <div class="ui form" style="width: 70%">
+                <div class="two fields">
+                        <div class="field">
+                                <button class="fluid ui red button" id="aquilaKey">Request Aquila server ON key</button>
+                        </div>
+                        <div class="field">
+                                <button class="fluid ui red button" id="cmdKey">Request Windows CMD ON key</button>
+                        </div>
+                </div>
+        </div>
+      </div>
+        <div class="ui  centered grid" style="padding-top:5%">
+                <div class="ui form" style="width: 70%">
+                    <div class="two fields">
+                                <div class="field">
+                                     Device web interface:   
+                                </div>
+                                <div class="field">
+                                    <button class="fluid ui red button" disabled>Request OFF key</button>
+                                </div>
+                    </div>
+                </div>
+           
+        </div>    
+
+    
+  </div>
+  <% include ./partials/footer %>

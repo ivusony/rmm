@@ -1,9 +1,11 @@
-body {
+.bg {
     background-image: url('img/dIHOfw.jpg');
     background-repeat:no-repeat;
     background-position: center center;
 }
-.bg {
+.fg {
+    width: 100%;
+    height: 100%;
     background: rgba(156, 156, 156, 0.3)
 }
 .ui.segment {
@@ -25,9 +27,14 @@ body > .grid {
     bottom: 0%;
 }
 #footer-p {
+    font-size: 1em;
     text-align: center;
-    color: rgba(26, 26, 26, 0.8);
+    color: rgba(219, 219, 219, 0.8);
 }
 .ui.grid {
     margin-top: 0rem;
+}
+
+.pusher {
+    color: rgba(219, 219, 219, 0.8) !important;
 }
