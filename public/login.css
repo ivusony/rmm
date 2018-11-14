@@ -1,0 +1,33 @@
+body {
+    background-image: url('img/dIHOfw.jpg');
+    background-repeat:no-repeat;
+    background-position: center center;
+}
+.bg {
+    background: rgba(156, 156, 156, 0.3)
+}
+.ui.segment {
+    background: rgba(156, 156, 156, 0.1)
+}
+body > .grid {
+    height: 100%;
+  }
+  .image {
+    margin-top: -100px;
+  }
+  .column {
+    max-width: 450px;
+  }
+
+  .footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0%;
+}
+#footer-p {
+    text-align: center;
+    color: rgba(26, 26, 26, 0.8);
+}
+.ui.grid {
+    margin-top: 0rem;
+}
