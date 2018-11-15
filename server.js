@@ -53,8 +53,10 @@
     //routes
     const loginRoute = require('./routes/loginRoute');
     const indexRoute = require('./routes/indexRoute');
+    const newRequestRoute = require('./routes/newRequestRoute');
             app.use(loginRoute);
             app.use(indexRoute);
+            app.use(newRequestRoute);
 
 
             app.listen(port, ()=>{

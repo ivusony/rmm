@@ -9,40 +9,48 @@
             this.requestType = requestType
         }
     }
-    //returns input field array from whatever the user passes
-    Request.prototype.toArray = function(){
-        return {modemIP:this.modemip, wc:this.wc, cpeIP:this.cpeip, modemType:this.modemType, requestType:this.requestType}
-    }
-    //takes in the three input field array and sanitizes the valuesso that no script tag should be passed to
-    //the server. If one is detected, method returns an empty string element in array
-    Request.prototype.sanitize = function(obj){
-        // return newArr = arr.map((el)=>{
-        //     var output = el.replace(/<script[^>]*?>.*?<\/script>/gi, '').
-		// 			 replace(/<[\/\!]*?[^<>]*?>/gi, '').
-		// 			 replace(/<style[^>]*?>.*?<\/style>/gi, '').
-		// 			 replace(/<![\s\S]*?--[ \t\n\r]*>/gi, '');
-	    //     return output;
-        // });
-        // $.each(obj, function(key, value){
-        //      return obj.key = 
-        // })
-        // return obj
 
-        //HERE CONTINUE
+    Request.prototype.sendRequest = function(){
+        $.ajax({
+            url: "/newrequest",
+            method: "POST",
+            data: {
+                modemIP:this.modemip,
+                wc:this.wc,
+                cpeIP:this.cpeip,
+                modemType:this.modemType,
+                requestType:this.requestType
+            },
+            dataContent: "application/json",
+            success: function(data, status, jqXHR){
+                console.log(data);
+                console.log(status);
+                console.log(jqXHR);
+            }
+        })
     }
-
-    
-    
-    
+   
     const  request_btn  = $('.request_btn');
-    request_btn.on('click', function(){
+    request_btn.on('click', function(e){
+        e.preventDefault();
+        //checking if any of the input fields provided are empty, and if the select option is blank. If so, returning.
+        if ($('#modemIP').val()==='' || $('#wCOM').val()==='' || $('#cpeIP').val() === '' || $('#modemType').val() === 'select') {
+            return alert('Error 1.01. Aborting')
+        }
+        //If check is passed, constructing new object from the values passed
         let newRequest = new Request($('#modemIP').val().trim(), $('#wCOM').val().trim(), $('#cpeIP').val().trim(), $('#modemType option:selected').val(), $(this).attr('id'));
-        let request = newRequest.sanitize(newRequest.toArray());
+        //then calling th sendrequest method on the newly created object
+        newRequest.sendRequest();
         
-        console.log(request)
+        resetFields();
     })
-
-
+    //reset filed function
+    function resetFields(){
+        $('#modemIP').val('');
+        $('#wCOM').val(''); 
+        $('#cpeIP').val('');
+        $('#modemType').val('select');
+    }
 
 
     
