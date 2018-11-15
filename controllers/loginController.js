@@ -5,7 +5,9 @@ module.exports = {
         res.redirect('/login')
     },
     authUser: function(req, res, next){
+    console.log("From loginController.authUser");
     console.log(req.body);
+    console.log("==============================");
     passport.authenticate('local', function(err, user, info) {
         if (err) { 
             return next(err); 

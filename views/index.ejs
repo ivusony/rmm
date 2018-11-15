@@ -2,15 +2,10 @@
 <% include ./partials/sidebar %>
 
 
+
   <div class= "pusher" style="width: calc(100% - 260px); height: 100%; ;background-color: rgba(241, 241, 241, 0.411)">
 
-    <div class="ui menu">
-        <!-- <a class="item">Browse</a>
-        <a class="item">Submit</a> -->
-        <div class="right menu">
-          <a class="item" href="/logout">Sign out</a>
-        </div>
-      </div>
+    <% include ./partials/navbar %>
 
       <div class="ui  centered grid" style="padding-top:5%">
         <div class="ui form" style="width: 70%">
@@ -29,7 +24,7 @@
               </div>
               <div class="field">
                     <label>Device type</label>
-                    <select name="" id="modemType" required>
+                    <select name="" id="modemType">
                         <option value=""></option>
                         <option value="cisco">Cisco EPC3925</option>
                         <option value="thomson">Thomson THG571</option>
@@ -42,10 +37,10 @@
         <div class="ui form" style="width: 70%">
                 <div class="two fields">
                         <div class="field">
-                                <button class="fluid ui red button" id="aquilaKey">Request Aquila server ON key</button>
+                                <button class="request_btn fluid ui red button" id="aquilaKey">Request Aquila server ON key</button>
                         </div>
                         <div class="field">
-                                <button class="fluid ui red button" id="cmdKey">Request Windows CMD ON key</button>
+                                <button class="request_btn fluid ui red button" id="cmdKey">Request Windows CMD ON key</button>
                         </div>
                 </div>
         </div>
