@@ -7,13 +7,17 @@ var OidSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    aquilaOn :{
-        pre: Object,
-        OID: Object
+    pre: {
+        type: String,
+        required: true
     },
-    aquilaOff:{
-        pre: Object,
-        OID: Object
+    OIDOn :{
+        type: Object || String,
+        required: true
+    },
+    OIDOff:{
+        type: Object || String,
+        required: true
     }
 });
 

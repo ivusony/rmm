@@ -59,6 +59,9 @@
             app.use(newRequestRoute);
 
 
+            console.log(module.exports)
+
+
             app.listen(port, ()=>{
                 console.log('RMM server running')
             })

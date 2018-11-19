@@ -12,15 +12,23 @@ module.exports = {
         })
     },
     callOids : function(req, res, next){
-        // res.send(req.body);
-        // res.end();
         Oids.findOne({modem: req.body.modemType}, function(err, found){
             if (err) {
+                
                 console.log(err)
             }else{
-                res.send(found);
-                res.end();
+                req.body.config = found
+                next()
             }
         })
+    },
+    generateString: function(req, res, next){
+        if (req.body.modemType === 'cisco' && req.body.requestType === 'aquilaKey') {
+            console.log(`${req.body.config.pre} ${req.body.wc} ${req.body.modemIP} ${req.body.config.OIDOn} \n`);
+        }else if(req.body.modemType === 'thomson' && req.body.requestType === 'aquilaKey'){
+            console.log(`${req.body.config.pre} ${req.body.wc} ${req.body.modemIP} ${req.body.config.OIDOn.part1} \n${req.body.config.pre} ${req.body.wc} ${req.body.modemIP} ${req.body.config.OIDOn.part2}`);
+        }
+        //continue here
+
     }
 }

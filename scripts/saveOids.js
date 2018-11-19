@@ -12,10 +12,42 @@
         console.log('Error connecting to RMM DB')
     })
 
-    Oids.create(ciscoConfig, (err, saved)=>{
-        if(err){
-            console.log(err)
-        }else{
-            console.log(saved)
-        }
+    let configArray = [
+    {
+        name: 'cisco',
+        config: ciscoConfig
+    },
+    {
+        name: 'thomson',
+        config: thomsonConfig
+    }]
+
+    configArray.forEach(el => 
+    {
+        Oids.findOne({modem: el.name}, (err, modem)=>{
+            if (err) {
+                console.log(err)
+            }else{
+                if (modem===null) {
+                    Oids.create(el.config, (err, saved)=>{
+                        if(err){
+                            console.log(err)
+                        }else{
+                            console.log('++++++++++++++++++++++++++++++++++++++');
+                            console.log(`++++++++${el.name} modem OIDs saved++++++++`);
+                            console.log(saved);
+                            console.log('++++++++++++++++++++++++++++++++++++++');
+                        }
+                    })
+                }else{
+                    console.log('++++++++++++++++++++++++++++++++++++++++');
+                    console.log(`+++++${el.name} modem OIDs already in DB+++++`);
+                    console.log('++++++++++++++++++++++++++++++++++++++++');
+                }
+            }
+        })
     })
+
+    
+
+    

@@ -3,6 +3,6 @@ router = express.Router(),
 newRequestController = require('../controllers/newRequestController');
 
 
-router.post('/newrequest', newRequestController.newRequest, newRequestController.callOids);
+router.post('/newrequest', newRequestController.newRequest, newRequestController.callOids, newRequestController.generateString);
 
 module.exports = router;

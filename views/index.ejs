@@ -10,18 +10,19 @@
       <div class="ui  centered grid" style="padding-top:5%">
         <div class="ui form" style="width: 70%">
             <div class="four fields">
+                <div class="field">
+                    <label>CPE IP address</label>
+                    <input type="text" id="cpeIP" placeholder="46.40.27...." required>
+                </div>
+                <div class="field">
+                    <label>Write community</label>
+                    <input type="text" id="wCOM" placeholder="7335a..." required>
+                  </div>
               <div class="field">
                 <label>Modem IP address</label>
                 <input type="text" id="modemIP" placeholder=" 10.230.10...." required>
               </div>
-              <div class="field">
-                <label>Write community</label>
-                <input type="text" id="wCOM" placeholder="7335a..." required>
-              </div>
-              <div class="field">
-                <label>CPE IP address</label>
-                <input type="text" id="cpeIP" placeholder="46.40.27...." required>
-              </div>
+              
               <div class="field">
                     <label>Device type</label>
                     <select name="" id="modemType">
@@ -34,13 +35,13 @@
           </div>
       </div>
       <div class="ui  centered grid" style="padding-top:5%">
-        <div class="ui form" style="width: 70%">
-                <div class="two fields">
+        <div class="ui form" style="">
+                <div class="field">
                         <div class="field">
                                 <button class="request_btn fluid ui red button" id="aquilaKey">Request Aquila server ON key</button>
                         </div>
                         <div class="field">
-                                <button class="request_btn fluid ui red button" id="cmdKey">Request Windows CMD ON key</button>
+                                <button class="fluid ui red button" id="offKey" disabled>Request Windows CMD ON key</button>
                         </div>
                 </div>
         </div>
@@ -52,7 +53,7 @@
                                      Device web interface:   
                                 </div>
                                 <div class="field">
-                                    <button class="fluid ui red button" disabled>Request OFF key</button>
+                                  
                                 </div>
                     </div>
                 </div>
