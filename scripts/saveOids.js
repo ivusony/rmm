@@ -1,6 +1,5 @@
-
-    
-    var mongoose = require('mongoose');
+{   
+   let mongoose = require('mongoose');
     let Oids = require('../models/Oid');
     let ciscoConfig = require('./cisco');
     let thomsonConfig = require('./thomson');
@@ -47,7 +46,7 @@
             }
         })
     })
-
+}
     
 
     

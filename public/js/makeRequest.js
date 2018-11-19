@@ -23,9 +23,14 @@
             },
             dataContent: "application/json",
             success: function(data, status, jqXHR){
+                $('#request_result').text(data);
                 console.log(data);
-                console.log(status);
-                console.log(jqXHR);
+                let clipboard = new Clipboard('.copy', {
+                    text: function(){
+                        return data
+                    }
+                });
+                //CONTINUE RESOLVING CLIPBOARD ISSUE
             }
         })
     }
@@ -41,8 +46,11 @@
         let newRequest = new Request($('#modemIP').val().trim(), $('#wCOM').val().trim(), $('#cpeIP').val().trim(), $('#modemType option:selected').val(), $(this).attr('id'));
         //then calling th sendrequest method on the newly created object
         newRequest.sendRequest();
+        $('#aquilaOffKey').prop('disabled', false);
+        if($(this).attr('id')==='aquilaOffKey'){
+            resetFields();
+        }
         
-        resetFields();
     })
     //reset filed function
     function resetFields(){
@@ -50,6 +58,7 @@
         $('#wCOM').val(''); 
         $('#cpeIP').val('');
         $('#modemType').val('select');
+        $('#aquilaOffKey').prop('disabled', true);
     }
 
 

@@ -1,9 +1,11 @@
 const   mongoose = require('mongoose'),
         User        = require('../models/User'),
         Oids        = require('../models/Oid'),
+        Stringer    = require('../scripts/stringer'),
         timestamp   = require("../scripts/getDate");
 
 module.exports = {
+    //
     newRequest: function(req, res, next){
         User.findOne({username:req.session.passport.user}, (err, user)=>{
             req.body.uid = user._id;
@@ -23,12 +25,10 @@ module.exports = {
         })
     },
     generateString: function(req, res, next){
-        if (req.body.modemType === 'cisco' && req.body.requestType === 'aquilaKey') {
-            console.log(`${req.body.config.pre} ${req.body.wc} ${req.body.modemIP} ${req.body.config.OIDOn} \n`);
-        }else if(req.body.modemType === 'thomson' && req.body.requestType === 'aquilaKey'){
-            console.log(`${req.body.config.pre} ${req.body.wc} ${req.body.modemIP} ${req.body.config.OIDOn.part1} \n${req.body.config.pre} ${req.body.wc} ${req.body.modemIP} ${req.body.config.OIDOn.part2}`);
-        }
-        //continue here
+        
+        let oidsToString = new Stringer(req.body, req.body.modemType, req.body.requestType);
+        res.send(oidsToString.returnString());
+
 
     }
 }
