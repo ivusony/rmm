@@ -1,8 +1,10 @@
-const   mongoose = require('mongoose'),
+const   mongoose    = require('mongoose'),
         User        = require('../models/User'),
         Oids        = require('../models/Oid'),
+        Request     = require('../models/Request'), 
         Stringer    = require('../scripts/stringer'),
-        timestamp   = require("../scripts/getDate");
+        timestamp   = require("../scripts/getDate"),
+        moment      = require('moment');
 
 module.exports = {
     ///newrequest route middlewares
@@ -15,8 +17,6 @@ module.exports = {
             }
             //add it to body of the request
             req.body.uid = user._id;
-            //add timestamp to the body off the request
-            req.body.timestamp = timestamp.date();
             next();
         })
     },
@@ -31,6 +31,33 @@ module.exports = {
                 next()
             }
         })
+    },
+    saveRequest: function(req,res,next){
+        Request.findOne({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, isON:true}, 
+            function(err, found){
+                if (!found) {
+                    Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"), isON:true}, 
+                    function(err, request){
+                        if (err) {
+                            console.log(err)
+                        }else{
+                            console.log('Request saved!');
+                        }
+                    })
+                }else{
+                    //HERE TO CONTINUE BECAUSE THIS IS BEING TRIGGERED BY THE ON KEY INSTED OF THE OFF KEY
+                    Request.findOneAndUpdate({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, isON:true}, 
+                        {$set:{isON:false}}, function(err, updated){
+                            if (err) {
+                                console.log(err)
+                            }else{
+                                console.log('Document found and updated')
+                            }
+                        })
+                }
+            })
+        
+        next();
     },
     generateString: function(req, res, next){
         //make new object passing to the obj constructor 

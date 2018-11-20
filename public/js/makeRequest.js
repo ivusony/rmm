@@ -57,7 +57,7 @@
             $(this).prop('disabled', true);
             //enable OFF key button
             $('#aquilaOffKey').prop('disabled', false);
-            console.log(newRequest2.cpeip);
+            $('#web-interface').attr('disabled', false)
     })
     $('#aquilaOffKey').on('click', function(e){
         e.preventDefault();
@@ -66,10 +66,15 @@
             //disable OFF key button
             $(this).prop('disabled', true);
             //reset fields
+            $('#remote-page').attr('src', '');
             resetFields();
     })
     $('#web-interface').click(function(e){
         e.preventDefault();
+        $(this).hide();
+        if($('#remote-page').hide()){
+            $('#remote-page').show();
+        }
         $('#remote-page').attr('src', 'http://'+ $('#cpeIP').val().trim() + ':8080');
     });   
     function resetFields(){
@@ -78,6 +83,7 @@
         $('#cpeIP').val('');
         $('#modemType').val('select');
         $('#aquilaOffKey').prop('disabled', true);
-        $('#remote-page').hide()
+        $('#remote-page').hide();
+        $('#web-interface').show().attr('disabled', true);
     }
 }
