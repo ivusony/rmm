@@ -7,7 +7,7 @@
 
     <% include ./partials/navbar %>
 
-      <div class="ui  centered grid" style="padding-top:5%">
+      <div class="ui  centered grid" style="margin-top:5%">
         <div class="ui form" style="width: 70%">
             <div class="four fields">
                 <div class="field">
@@ -35,33 +35,37 @@
           </div>
       </div>
       <div class="ui  centered grid" style="padding-top:5%">
-        <div class="ui form" style="">
-                <div class="field">
+        <div class="ui form" style="min-width: 35%;">
+                <div class="two fields">
                         <div class="field">
-                                <button class="request_btn copy fluid ui red button"  id="aquilaOnKey">Request Aquila server ON key</button>
+                                <button class="request_btn copy fluid ui red button" data-clipboard-target="#request_result" id="aquilaOnKey" disabled>Copy ON key</button>
                         </div>
                         <div class="field">
-                                <button class="request_btn copy fluid ui red button"  id="aquilaOffKey" disabled >Request Windows CMD ON key</button>
+                                <button class="request_btn copy fluid ui red button" data-clipboard-target="#request_result" id="aquilaOffKey" disabled >Copy OFF Key</button>
                         </div>
                 </div>
         </div>
       </div>
-      <div id="request_result">
-         
-      </div>
+      
+         <textarea id="request_result" style="position:absolute; left: -1500px  "></textarea>
+      
         <div class="ui  centered grid" style="padding-top:5%">
                 <div class="ui form" style="width: 70%">
-                    <div class="two fields">
+                    <div class="field" id="link">
                                 <div class="field">
-                                     Device web interface:   
-                                </div>
-                                <div class="field">
-                                  
+                                    <a id="web-interface" href="" target="">Open device web interface </a>
+                                       
                                 </div>
                     </div>
                 </div>
            
-        </div>    
+        </div>  
+        <div class="ui grid">
+            <div id="frame_holder" style="width: 1100px; height: 500px; margin-left: auto; margin-right: auto">
+                <iframe id="remote-page" src=""  width="100%" height="100%" align="center" frameborder="0"></iframe>
+            </div>
+        <div>
+        
 
     
   </div>

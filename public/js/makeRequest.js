@@ -15,53 +15,69 @@
             url: "/newrequest",
             method: "POST",
             data: {
-                modemIP:this.modemip,
-                wc:this.wc,
-                cpeIP:this.cpeip,
-                modemType:this.modemType,
-                requestType:this.requestType
+                modemIP     :   this.modemip,
+                wc          :   this.wc,
+                cpeIP       :   this.cpeip,
+                modemType   :   this.modemType,
+                requestType :   this.requestType
             },
             dataContent: "application/json",
             success: function(data, status, jqXHR){
+                //do something with returned key
+                // console.log(data);
+                //insert returned string into element
+                //need to be textarea element in order for the copy to work
                 $('#request_result').text(data);
-                console.log(data);
-                let clipboard = new Clipboard('.copy', {
-                    text: function(){
-                        return data
-                    }
-                });
-                //CONTINUE RESOLVING CLIPBOARD ISSUE
             }
         })
     }
-   
-    const  request_btn  = $('.request_btn');
-    request_btn.on('click', function(e){
+    //the first request for the ON key is made when the dropdown menu change is triggered
+    $('#modemType').change(function(e){
         e.preventDefault();
         //checking if any of the input fields provided are empty, and if the select option is blank. If so, returning.
         if ($('#modemIP').val()==='' || $('#wCOM').val()==='' || $('#cpeIP').val() === '' || $('#modemType').val() === 'select') {
             return alert('Error 1.01. Aborting')
         }
         //If check is passed, constructing new object from the values passed
-        let newRequest = new Request($('#modemIP').val().trim(), $('#wCOM').val().trim(), $('#cpeIP').val().trim(), $('#modemType option:selected').val(), $(this).attr('id'));
-        //then calling th sendrequest method on the newly created object
+        let newRequest = new Request($('#modemIP').val().trim(), $('#wCOM').val().trim(), $('#cpeIP').val().trim(), $('#modemType option:selected').val(), "aquilaOnKey");
+        //then calling the sendrequest method on the newly created object
         newRequest.sendRequest();
-        $('#aquilaOffKey').prop('disabled', false);
-        if($(this).attr('id')==='aquilaOffKey'){
-            resetFields();
-        }
-        
+        //enabling the copy key button
+        $('#aquilaOnKey').prop('disabled', false);            
     })
-    //reset filed function
+
+    $('#aquilaOnKey').on('click', function(e){
+        e.preventDefault();
+            //copy already generated string from textarea
+            new Clipboard('.copy');
+            //make new request with the offkey parameter
+            let newRequest2 = new Request($('#modemIP').val().trim(), $('#wCOM').val().trim(), $('#cpeIP').val().trim(), $('#modemType option:selected').val(), "aquilaOffKey");
+            newRequest2.sendRequest();
+            //disable ON key button
+            $(this).prop('disabled', true);
+            //enable OFF key button
+            $('#aquilaOffKey').prop('disabled', false);
+            console.log(newRequest2.cpeip);
+    })
+    $('#aquilaOffKey').on('click', function(e){
+        e.preventDefault();
+            //copy the new request string from textarea
+            new Clipboard('.copy');
+            //disable OFF key button
+            $(this).prop('disabled', true);
+            //reset fields
+            resetFields();
+    })
+    $('#web-interface').click(function(e){
+        e.preventDefault();
+        $('#remote-page').attr('src', 'http://'+ $('#cpeIP').val().trim() + ':8080');
+    });   
     function resetFields(){
         $('#modemIP').val('');
         $('#wCOM').val(''); 
         $('#cpeIP').val('');
         $('#modemType').val('select');
         $('#aquilaOffKey').prop('disabled', true);
+        $('#remote-page').hide()
     }
-
-
-    
-        
 }
