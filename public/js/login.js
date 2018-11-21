@@ -1,4 +1,7 @@
 {
+    $(document).ready(function(){
+        $('input[name=username]').focus()
+    })    
     $('#login_btn').on('click', function(){
         $.ajax({
             url: '/login',

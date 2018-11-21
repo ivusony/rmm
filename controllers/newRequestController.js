@@ -33,9 +33,19 @@ module.exports = {
         })
     },
     saveRequest: function(req,res,next){
-        Request.findOne({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, isON:true}, 
-            function(err, found){
-                if (!found) {
+        if (req.body.requestType === 'aquilaOffKey') {
+            Request.updateMany({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, isON:true}, {$set:{isON:false}} , {new:true} , 
+                function(err, updated){
+                    if (err) {
+                        console.log('Unable to update');
+                        console.log(err);
+                    }else{
+                        console.log('Updated: one');
+                        console.log(updated);
+                    }
+                })
+                next();
+        }else{
                     Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"), isON:true}, 
                     function(err, request){
                         if (err) {
@@ -44,23 +54,12 @@ module.exports = {
                             console.log('Request saved!');
                         }
                     })
-                }else{
-                    //HERE TO CONTINUE BECAUSE THIS IS BEING TRIGGERED BY THE ON KEY INSTED OF THE OFF KEY
-                    Request.findOneAndUpdate({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, isON:true}, 
-                        {$set:{isON:false}}, function(err, updated){
-                            if (err) {
-                                console.log(err)
-                            }else{
-                                console.log('Document found and updated')
-                            }
-                        })
-                }
-            })
-        
-        next();
+                next();
+        }        
     },
     generateString: function(req, res, next){
         //make new object passing to the obj constructor 
+        console.log(req.body.requestType);
         let oidsToString = new Stringer(req.body, req.body.modemType, req.body.requestType);
         let str = oidsToString.returnString();
         res.send(str);
