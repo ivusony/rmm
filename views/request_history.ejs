@@ -1,0 +1,39 @@
+<% include ./partials/header %>
+<% include ./partials/navbar %>
+<% include ./partials/sidebar %>
+
+<div class= "pusher" style="width: calc(100% - 260px); height: 100%; padding-top: 40px;">
+
+    
+        <h3>My request history</h3>
+       
+  
+
+                    <table class="ui six small stackable  compact  grey striped  table">
+                        <thead>
+                        <tr>
+                            <th>CPE IP</th>
+                            <th>MODEM IP</th>
+                            <th>MODEM TYPE</th>
+                            <th>DATE AND TIME</th>
+                            <th>IS OPEN</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                    <%requests.forEach(request=>{%>
+                        <tr>
+                            <td><%=request.CPEIP%></td>
+                            <td><%=request.MODEMIP%></td>
+                            <td><%=request.MODEM%></td>
+                            <td><%=request.TIMESTAMP%></td>
+                            <td><%=request.isON%></td>
+                        </tr>
+                        <%})%>
+                    </table>
+
+</div>
+
+
+
+
+<% include ./partials/footer %>

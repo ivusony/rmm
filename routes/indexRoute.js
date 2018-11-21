@@ -6,6 +6,6 @@ const indexController = require('../controllers/indexController');
 
 
 router.get('/index', loginController.isLoggedIn , indexController.renderIndex);
-router.get('*', loginController.isLoggedIn , indexController.renderIndex);
+// router.get('*', loginController.isLoggedIn , indexController.renderIndex);
 
 module.exports = router;

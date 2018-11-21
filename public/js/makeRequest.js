@@ -122,4 +122,6 @@
         $('#web-interface').text('Open device web interface');
         
     }
+
+
 }

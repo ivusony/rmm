@@ -54,12 +54,15 @@
     const loginRoute = require('./routes/loginRoute');
     const indexRoute = require('./routes/indexRoute');
     const newRequestRoute = require('./routes/newRequestRoute');
+    const requestHistoryRoute   = require('./routes/requestHistoryRoute');
+   
             app.use(loginRoute);
+            
             app.use(indexRoute);
             app.use(newRequestRoute);
-
-
-            console.log(module.exports)
+            app.use(requestHistoryRoute);
+            
+            
 
 
             app.listen(port, ()=>{
