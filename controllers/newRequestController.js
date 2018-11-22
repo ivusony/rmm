@@ -4,7 +4,7 @@ const   mongoose    = require('mongoose'),
         Request     = require('../models/Request'), 
         Stringer    = require('../scripts/stringer'),
         timestamp   = require("../scripts/getDate"),
-        moment      = require('moment');
+        momentTZ      = require('moment-timezone');
 
 module.exports = {
     ///newrequest route middlewares
@@ -46,7 +46,7 @@ module.exports = {
                 })
                 next();
         }else{
-                    Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: moment().format("dddd, MMMM Do YYYY, h:mm:ss a"), isON:true}, 
+                    Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: new Date(), isON:true}, 
                     function(err, request){
                         if (err) {
                             console.log(err)

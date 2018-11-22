@@ -1,0 +1,52 @@
+<% include ./partials/header %>
+<% include ./partials/navbar %>
+<% include ./partials/sidebar %>
+
+<div class= "pusher" style="width: calc(100% - 260px); height: 100%; padding-top: 40px;">
+                
+                <div class="ui center aligned grid">
+                        <h4 class="ui icon header">
+                                <i class="user icon"></i>
+                                        <div class="content">
+                                         Profile Settings
+                                        <div class="sub header">You can change your password here</div>
+                                        </div>
+                        </h4>
+                </div>       
+
+        <div class="ui center aligned grid">
+                <div class="ten wide tablet five wide computer column">
+                        <div class="ui mini form">
+                                <form action="/updateprofile?_method=PUT" method="POST">
+                                        <div class="field">
+                                                <label>Username</label>
+                                                <input name="username" type="text" value="<%= currentUser.username %>" disabled>
+                                        </div>
+                                        <div class="field">
+                                                <label>Full Name</label>
+                                                <input name="fullName" type="text"  value="<%= currentUser.fullName %>">
+                                        </div>
+                                        <div class="field">
+                                                <label>E-mail</label>
+                                                <input name="email" type="text"  value="<%= currentUser.email %>">
+                                        </div>
+                                        <div class="field">
+                                                <label>Current password</label>
+                                                <input name="oldPass" type="text">
+                                        </div>
+                                        <div class="field">
+                                                <label>Set new password</label>
+                                                <input name="newPass" type="text">
+                                        </div>
+                               
+                                        <button class="ui fluid red submit button">Save changes</button>
+                                </form>        
+                        </div>
+                </div>        
+        </div>       
+
+</div>
+
+
+
+<% include ./partials/footer %>

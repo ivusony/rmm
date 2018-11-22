@@ -1,5 +1,6 @@
 {
     const   express                 = require('express'),
+            router                  = express.Router(),
             app                     = express(),
             port                    = 3000,
             bodyParser              = require('body-parser'),
@@ -7,7 +8,8 @@
             passport                = require('passport'),
             localStrategy           = require('passport-local'),
             passportLocalMongoose   = require('passport-local-mongoose'),
-            expressSanitizer        = require('express-sanitizer');
+            expressSanitizer        = require('express-sanitizer'),
+            methodOverride          = require('method-override');
 
 
             //usel model
@@ -40,6 +42,7 @@
             //PASSPORTJS SETUP
             app.use(passport.initialize());
             app.use(passport.session());
+            app.use(methodOverride('_method'));
             passport.use(new localStrategy(User.authenticate())); 
             passport.serializeUser(User.serializeUser());
             passport.deserializeUser(User.deserializeUser());
@@ -55,15 +58,17 @@
     const indexRoute = require('./routes/indexRoute');
     const newRequestRoute = require('./routes/newRequestRoute');
     const requestHistoryRoute   = require('./routes/requestHistoryRoute');
+    const profileRoute          = require('./routes/profileRoute');
+        
+    
    
             app.use(loginRoute);
             
             app.use(indexRoute);
             app.use(newRequestRoute);
             app.use(requestHistoryRoute);
-            
-            
-
+            app.use(profileRoute);
+         
 
             app.listen(port, ()=>{
                 console.log('RMM server running')

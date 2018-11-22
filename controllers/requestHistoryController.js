@@ -8,7 +8,7 @@ module.exports = {
                 console.log(err)
             }else{
                 res.render('request_history', {
-                    currentUser : res.currentUser.fullName,
+                    currentUser : res.currentUser,
                     requests : requests
                 })
             }

@@ -5,11 +5,18 @@
 <div class= "pusher" style="width: calc(100% - 260px); height: 100%; padding-top: 40px;">
 
     
-        <h3>My request history</h3>
-       
+        <div class="ui center aligned grid">
+                <h4 class="ui icon header">
+                        <i class="history icon"></i>
+                                <div class="content">
+                                 Request history
+                                <div class="sub header">Listing requests in descending order by date</div>
+                                </div>
+                </h4>
+        </div>       
   
 
-                    <table class="ui six small stackable  compact  grey striped  table">
+                    <table class="ui six small stackable  compact  striped   table">
                         <thead>
                         <tr>
                             <th>CPE IP</th>
@@ -26,7 +33,13 @@
                             <td><%=request.MODEMIP%></td>
                             <td><%=request.MODEM%></td>
                             <td><%=request.TIMESTAMP%></td>
-                            <td><%=request.isON%></td>
+                            <td  class="ison">
+                                <%if(request.isON){%>
+                                    NOT CLOSED
+                                <%}else{%>
+                                    NO
+                                <%}%>
+                            </td>
                         </tr>
                         <%})%>
                     </table>
