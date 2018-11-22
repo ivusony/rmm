@@ -15,35 +15,35 @@
                 </h4>
         </div>       
   
-
-                    <table class="ui six small stackable  compact  striped   table">
+        <div class="ui center aligned grid">
+            <div class=" ">
+                    <table class="ui   small stackable  compact  striped   table">
                         <thead>
-                        <tr>
+                        <tr class="center aligned">
                             <th>CPE IP</th>
                             <th>MODEM IP</th>
                             <th>MODEM TYPE</th>
                             <th>DATE AND TIME</th>
-                            <th>IS OPEN</th>
+                            <th>STATUS</th>
                         </tr>
                         </thead>
                         <tbody>
                     <%requests.forEach(request=>{%>
-                        <tr>
+                        <tr class="center aligned">
                             <td><%=request.CPEIP%></td>
                             <td><%=request.MODEMIP%></td>
                             <td><%=request.MODEM%></td>
                             <td><%=request.TIMESTAMP%></td>
-                            <td  class="ison">
                                 <%if(request.isON){%>
-                                    NOT CLOSED
+                                    <td  class="ison negative">Still open<i class="attention icon"></i></td>
                                 <%}else{%>
-                                    NO
+                                    <td  class="ison positive">Closed</td>
                                 <%}%>
-                            </td>
                         </tr>
                         <%})%>
                     </table>
-
+            </div>
+        </div>    
 </div>
 
 

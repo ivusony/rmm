@@ -11,8 +11,6 @@ module.exports = {
             if (err) {
                 console.log(err)
             }else{
-                console.log('Updated:');
-                console.log(updated);
             }
         })
 
@@ -23,7 +21,6 @@ module.exports = {
                         console.log(err);
                         res.redirect('/profile');
                     }else{
-                        console.log('Password chaged');
                         res.redirect('/logout');
                     }
                 });

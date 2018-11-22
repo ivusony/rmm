@@ -3,7 +3,7 @@ const   mongoose    = require('mongoose'),
         Oids        = require('../models/Oid'),
         Request     = require('../models/Request'), 
         Stringer    = require('../scripts/stringer'),
-        timestamp   = require("../scripts/getDate"),
+        timestamp   = require("../scripts/Timestamp"),
         momentTZ      = require('moment-timezone');
 
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
                 })
                 next();
         }else{
-                    Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: new Date(), isON:true}, 
+                    Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: new timestamp().getTimestamp(), isON:true}, 
                     function(err, request){
                         if (err) {
                             console.log(err)

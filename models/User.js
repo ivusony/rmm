@@ -15,7 +15,9 @@ var UserSchema = new mongoose.Schema({
     password: String,
     requests: Array,
     isAdmin: Boolean,
-    fullName: String
+    fullName: String,
+    lastActive: String,
+    online: Boolean
 });
 
 UserSchema.plugin(passportLocalMongoose);

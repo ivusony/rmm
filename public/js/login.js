@@ -1,15 +1,1 @@
-{
-    $(document).ready(function(){
-        $('input[name=username]').focus()
-    })    
-    $('#login_btn').on('click', function(){
-        $.ajax({
-            url: '/login',
-            method: 'POST',
-            data: {
-                username: $('input[name=email]').val(),
-                password: $('input[name=password]').val()
-            }
-        })
-    })
-}
+{$(document).ready(function(){$('input[name=username]').focus()});$('#login_btn').on('click',function(){$.ajax({url:'/login',method: 'POST',data:{username: $('input[name=email]').val(),password:$('input[name=password]').val()}})})}

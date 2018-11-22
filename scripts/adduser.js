@@ -1,9 +1,7 @@
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
     User = require('../models/User'),
     passportLocalMongoose = require('passport-local-mongoose');
 
-    const bcrypt = require('bcrypt');
-    const saltRounds = 10;
 
 
     mongoose.connect('mongodb://localhost/rmm');
@@ -11,22 +9,17 @@ var mongoose = require('mongoose'),
 
 
 
-    // User.register(new User({email: 'example@example.com', username: 'test', isAdmin: true}),'test', function(err, user){
-    //     if (err) {
-    //         console.log('=================================');
-    //         console.log('Error adding user:');
-    //         console.log(err);
-    //         console.log('=================================');
-    //     }else{
-    //         console.log('=================================');
-    //         console.log('User added:');
-    //         console.log(user);
-    //         console.log('================================='); 
-    //     }
-    // })
-
-    User.findOne({username:'test'}).then((user)=>{
-        user.changePassword('test2', 'test');
-    }).catch((err)=>{
-        console.log('Unable to change password')
+    User.register(new User({email: 'example@example.com', username: 'test', isAdmin: false, fullName: "Ivan Radulov"}),'test', function(err, user){
+        if (err) {
+            console.log('=================================');
+            console.log('Error adding user:');
+            console.log(err);
+            console.log('=================================');
+        }else{
+            console.log('=================================');
+            console.log('User added:');
+            console.log(user);
+            console.log('================================='); 
+        }
     })
+
