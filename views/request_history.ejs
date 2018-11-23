@@ -2,7 +2,7 @@
 <% include ./partials/navbar %>
 <% include ./partials/sidebar %>
 
-<div class= "pusher" style="width: calc(100% - 260px); height: 100%; padding-top: 40px;">
+<div class= "pusher" style="width: calc(100% - 260px); height: 100%; padding-top: 50px; margin-top: -40px">
 
     
         <div class="ui center aligned grid">
@@ -15,11 +15,11 @@
                 </h4>
         </div>       
   
-        <div class="ui center aligned grid">
-            <div class=" ">
-                    <table class="ui   small stackable  compact  striped   table">
+                    <table class="ui   small stackable  compact  striped   table" >
                         <thead>
                         <tr class="center aligned">
+                            <th>#</th>
+                            <th>USER ID</th>
                             <th>CPE IP</th>
                             <th>MODEM IP</th>
                             <th>MODEM TYPE</th>
@@ -28,8 +28,11 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <% let counter = requests.length%> %>    
                     <%requests.forEach(request=>{%>
                         <tr class="center aligned">
+                            <td><%= counter-- %></td>
+                            <td>blank</td>
                             <td><%=request.CPEIP%></td>
                             <td><%=request.MODEMIP%></td>
                             <td><%=request.MODEM%></td>
@@ -42,8 +45,7 @@
                         </tr>
                         <%})%>
                     </table>
-            </div>
-        </div>    
+           
 </div>
 
 

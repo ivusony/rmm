@@ -59,6 +59,8 @@
     const newRequestRoute = require('./routes/newRequestRoute');
     const requestHistoryRoute   = require('./routes/requestHistoryRoute');
     const profileRoute          = require('./routes/profileRoute');
+    const statsRoute    = require('./routes/statsRoute');
+    const messagesRoute    = require('./routes/messagesRoute');
         
     
    
@@ -68,6 +70,8 @@
             app.use(newRequestRoute);
             app.use(requestHistoryRoute);
             app.use(profileRoute);
+            app.use(statsRoute);
+            app.use(messagesRoute);
          
 
             app.listen(port, ()=>{
