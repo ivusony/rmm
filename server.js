@@ -10,7 +10,14 @@
             passportLocalMongoose   = require('passport-local-mongoose'),
             expressSanitizer        = require('express-sanitizer'),
             methodOverride          = require('method-override');
+            
 
+
+            const server    = app.listen(port, ()=>{
+                console.log('RMM server running')
+            })
+
+            
 
             //usel model
     const User = require('./models/User');   
@@ -71,10 +78,7 @@
             app.use(requestHistoryRoute);
             app.use(profileRoute);
             app.use(statsRoute);
-            app.use(messagesRoute);
+            app.use(messagesRoute(server));
          
-
-            app.listen(port, ()=>{
-                console.log('RMM server running')
-            })
+           
 }

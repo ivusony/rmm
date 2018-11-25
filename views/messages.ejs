@@ -2,7 +2,7 @@
 <% include ./partials/navbar %>
 <% include ./partials/sidebar %>
 
-<div class= "pusher" style="width: calc(100% - 360px); height: 100%; padding-top: 50px; margin-top: -40px">
+<div class= "pusher" style="width: calc(100% - 182px);">
                 
 
         <div class="ui center aligned grid">
@@ -16,13 +16,17 @@
         </div>  
 
 
-        <div class="ui placeholder segment" style="height:88%; padding: 0px; ">
+        <div class="ui segment" id="chat" style="height:70%; padding: 0px; ">
+                <div id="output">
+
+                </div>
+               
                 
-                 <div class="" style="width:100%; position: absolute; left: 0px; bottom: 0px">
+                 <div  style="width:100%; position: absolute; left: 0px; bottom: -40px">
                                 <div class="ui fluid action input">
-                                                <input type="text" placeholder="Send">
-                                                <div class="ui button">Search</div>
-                                              </div>
+                                        <input id="message" type="text" placeholder="Enter message to other users">
+                                        <div class="ui button" id="send_message">Send</div>
+                                </div>
                  </div>     
         </div>
 
@@ -34,11 +38,6 @@
       
 </div>
 
-<div class="ui right very thin  vertical inverted visible menu sidebar" style="top: 40px; width: 100px">
-                <div class=" item" id="menu">
-                                Online
-                     </div>
-</div>
 
 
 

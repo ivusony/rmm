@@ -4,8 +4,10 @@ const   express     = require('express'),
 const messagesController = require('../controllers/messagesController');
 const loginController = require('../controllers/loginController');
 
+module.exports = function(server){
+    router.get('/messages', loginController.isLoggedIn ,messagesController(server));
+    return router
+} 
 
-router.get('/messages', loginController.isLoggedIn ,messagesController.renderPage);
 
 
-module.exports = router;

@@ -1,6 +1,6 @@
 const passport  = require('passport');
 const User      = require('../models/User');
-const timestamp = require('../scripts/Timestamp');
+const date = require('../scripts/Timestamp');
 
 module.exports = {
     redirect: function(req, res, next){
@@ -15,7 +15,7 @@ module.exports = {
             return res.redirect('/login'); 
         }
         //set current timestamp as lastActive and online status
-        User.findByIdAndUpdate({_id:user._id}, {$set:{lastActive: new timestamp().getTimestamp()}, online:true}, function(err, updated){
+        User.findByIdAndUpdate({_id:user._id}, {$set:{lastActive: date.format()}, online:true}, function(err, updated){
             if(err){
                 console.log(err)
             }

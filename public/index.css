@@ -6,3 +6,14 @@ div.ui.menu{
     margin: 0px;
     border-radius: 0px;
 }
+.pusher {
+    height: 90%;
+    margin-top: 2em;
+    position: absolute;
+    left: -78px;
+}
+
+#output {
+    height: 100%;
+    overflow-y: scroll;
+}

@@ -9,7 +9,7 @@ const mongoose = require('mongoose'),
 
 
 
-    User.register(new User({email: 'example@example.com', username: 'test', isAdmin: false, fullName: "Ivan Radulov", firstLogin: true}),'test', function(err, user){
+    User.register(new User({email: 'example@example.com', username: 'test2', isAdmin: false, fullName: "Pera Peric", firstLogin: true}),'test2', function(err, user){
         if (err) {
             console.log('=================================');
             console.log('Error adding user:');
