@@ -10,7 +10,7 @@
         router.get('/login', loginController.isLoggedIn, indexController.renderIndex)
         
         router.post('/login', loginController.authUser);
-        router.get('/logout', loginController.logout);
+        router.get('/logout', loginController.isLoggedIn , loginController.logout);
 
         module.exports = router;
 }
