@@ -1,30 +1,15 @@
-const socket         = require('socket.io');
+const User = require('../models/User');
+const Message   = require('../models/Message'); 
 
-module.exports = function(server){
+module.exports = function(){
     return(req, res, next)=>{
-        //NOT SENDING THE USERNAME!!!!!!!!!!
-        let sender = res.currentUser.username;
-        // socket ? console.log('YES IO') : console.log('NO IO');
-        const io                = socket(server);
-        io.on('connect', (socket)=>{
-            console.log('Websocket connection ID ' + socket.id + ' has been established');
-            socket.on('chat', (data)=>{
-                io.sockets.emit('chat', {
-                    sender : sender,
-                    message : data.message
-                })
+        Message.find({}).then((messages)=>{
+            res.render('messages', {
+                currentUser : res.currentUser,
+                msgs: messages
             })
-           
         })
-
-      
-        res.render('messages', {
-            currentUser : res.currentUser
-        })
-        io.on('disconnect', ()=>{
-            console.log('DISCONNECTED')
-        })
-       
+        
     }
 }
     

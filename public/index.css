@@ -16,4 +16,13 @@ div.ui.menu{
 #output {
     height: 100%;
     overflow-y: scroll;
+    overflow-x: hidden
+}
+
+.new_message {
+    padding-left: 2%;
+}
+.new_message span {
+    float: right;
+    padding-right: 2%
 }

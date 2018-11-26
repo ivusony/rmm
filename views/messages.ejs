@@ -18,13 +18,16 @@
 
         <div class="ui segment" id="chat" style="height:70%; padding: 0px; ">
                 <div id="output">
-
+                        <% msgs.forEach(msg=>{ %>
+                                <p class="new_message"><strong><%= msg.UID %>:&nbsp&nbsp&nbsp </strong><%= msg.BODY %> <span> <%= msg.TIMESTAMP %> </span></p>
+                        <% }) %>
+                        
                 </div>
                
                 
-                 <div  style="width:100%; position: absolute; left: 0px; bottom: -40px">
+                 <div style="width:100%; position: absolute; left: 0px; bottom: -40px">
                                 <div class="ui fluid action input">
-                                        <input id="message" type="text" placeholder="Enter message to other users">
+                                        <input id="<%= currentUser._id %>" name="message" type="text" placeholder="Enter message to other users">
                                         <div class="ui button" id="send_message">Send</div>
                                 </div>
                  </div>     

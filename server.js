@@ -11,13 +11,14 @@
             expressSanitizer        = require('express-sanitizer'),
             methodOverride          = require('method-override');
             
+    const   socket          = require('./IO/setup');
+   
 
-
-            const server    = app.listen(port, ()=>{
+    const   server          = app.listen(port, ()=>{
                 console.log('RMM server running')
             })
-
-            
+    
+            socket(server);
 
             //usel model
     const User = require('./models/User');   
@@ -78,7 +79,10 @@
             app.use(requestHistoryRoute);
             app.use(profileRoute);
             app.use(statsRoute);
-            app.use(messagesRoute(server));
+            app.use(messagesRoute());
+
+
+           
          
            
 }
