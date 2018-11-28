@@ -1,4 +1,4 @@
-{
+(function($){
     $(document).ready(function(){
         $('#cpeIP').focus();
         $('#cpeIP').on('paste',function(){
@@ -125,5 +125,4 @@
 
     $('.ui.basic.modal').modal('show');
    
-
-}
+})(jQuery)
