@@ -45,7 +45,7 @@ module.exports = {
                 })
                 next();
         }else{
-                    Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: timestamp.format(), isON:true}, 
+                    Request.create({UID:req.body.uid, CPEIP:req.body.cpeIP, WC:req.body.wc, MODEMIP:req.body.modemIP, MODEM: req.body.modemType, TIMESTAMP: new Date(), isON:true}, 
                     function(err, request){
                         if (err) {
                             console.log(err)
