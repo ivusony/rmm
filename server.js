@@ -2,7 +2,7 @@
     const   express                 = require('express'),
             router                  = express.Router(),
             app                     = express(),
-            port                    = 3000,
+            port                    = 5000,
             bodyParser              = require('body-parser'),
             mongoose                = require('mongoose'),
             passport                = require('passport'),
