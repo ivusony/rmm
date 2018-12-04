@@ -2,6 +2,7 @@
 <% include ./partials/navbar %>
 <% include ./partials/sidebar %>
 
+<link rel="stylesheet" type="text/css" media="screen" href="request_history.css" />
 <div class= "pusher" style="width: calc(100% - 182px);">
 
     
@@ -21,6 +22,7 @@
                             <th>#</th>
                             <th>USER ID</th>
                             <th>CPE IP</th>
+                            <th>RWC</th>
                             <th>MODEM IP</th>
                             <th>MODEM TYPE</th>
                             <th>DATE AND TIME</th>
@@ -30,11 +32,16 @@
                         <tbody>
                         <% let counter = requests.length%> %>    
                     <%requests.forEach(request=>{%>
-                        <tr class="center aligned">
-                            <td><%= counter-- %></td>
+                        <% if(request.isON){ %>
+                            <tr class="center aligned still_on"  >
+                        <% }else { %>
+                            <tr class="center aligned"  >
+                        <% } %>
+                            <td id="<%= request._id %>"><%= counter-- %></td>
                             <td>blank</td>
-                            <td><%=request.CPEIP%></td>
-                            <td><%=request.MODEMIP%></td>
+                            <td class="cpeip"><%=request.CPEIP%></td>
+                            <td class="wc"><%=request.WC%></td>
+                            <td class="modemip"><%=request.MODEMIP%></td>
                             <td><%=request.MODEM%></td>
                             <td><%=request.TIMESTAMP%></td>
                                 <%if(request.isON){%>
@@ -47,6 +54,7 @@
                     </table>
            
 </div>
+
 
 
 

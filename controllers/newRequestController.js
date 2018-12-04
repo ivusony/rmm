@@ -8,6 +8,7 @@ const   mongoose    = require('mongoose'),
 module.exports = {
     ///newrequest route middlewares
     newRequest: function(req, res, next){
+        console.log(req.body)
         //find ID of user making the request 
         User.findOne({username:req.session.passport.user}, (err, user)=>{
             if (err) {
