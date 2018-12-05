@@ -33,25 +33,27 @@
                         <% let counter = requests.length%> %>    
                     <%requests.forEach(request=>{%>
                         <% if(request.isON){ %>
-                            <tr class="center aligned still_on"  >
+                            <tr class="center aligned copy still_on" data-clipboard-target="#request_result_off">
                         <% }else { %>
                             <tr class="center aligned"  >
                         <% } %>
-                            <td id="<%= request._id %>"><%= counter-- %></td>
-                            <td>blank</td>
-                            <td class="cpeip"><%=request.CPEIP%></td>
-                            <td class="wc"><%=request.WC%></td>
-                            <td class="modemip"><%=request.MODEMIP%></td>
-                            <td><%=request.MODEM%></td>
-                            <td><%=request.TIMESTAMP%></td>
+                                <td id="<%= request._id %>"><%= counter-- %></td>
+                                <td>blank</td>
+                                <td class="cpeip"><%=request.CPEIP%></td>
+                                <td class="wc"><%=request.WC%></td>
+                                <td class="modemip"><%=request.MODEMIP%></td>
+                                <td class="type"><%=request.MODEM%></td>
+                                <td><%=request.TIMESTAMP%></td>
                                 <%if(request.isON){%>
-                                    <td  class="ison negative">Still open<i class="attention icon"></i></td>
+                                        <td  class="ison negative off_container">Still open<i class="attention icon"></i></td>
                                 <%}else{%>
                                     <td  class="ison positive">Closed</td>
                                 <%}%>
-                        </tr>
+                            </tr>
                         <%})%>
                     </table>
+
+                    <textarea id="request_result_off" style="position:absolute; left: -1500px"></textarea>
            
 </div>
 
