@@ -1,7 +1,9 @@
 html {
     height: 100%;
 }
-
+body {
+    background-color: none
+}
 div.ui.menu{
     margin: 0px;
     border-radius: 0px;
@@ -25,4 +27,33 @@ div.ui.menu{
 .new_message span {
     float: right;
     padding-right: 2%
+}
+
+.profile_settings {
+    display: none;
+}
+
+@media only screen and (min-width:500px){
+    .mobile {
+        display: none !important
+    }
+    .pusher {
+        width: calc(100% - 182px);
+    }
+}
+@media only screen and (max-width:500px){
+    .sidebar {
+        display: none !important
+    }
+    #currentuser {
+        display: none;
+    }
+    .pusher {
+        width: 100%;
+        position: absolute;
+        left: -260px;
+    }
+    .timestamp {
+        display: none;
+    }
 }

@@ -2,7 +2,7 @@
 <% include ./partials/navbar %>
 <% include ./partials/sidebar %>
 
-<div class= "pusher" style="width: calc(100% - 182px);">
+<div class= "pusher">
                 
 
         <div class="ui center aligned grid">
@@ -19,7 +19,7 @@
         <div class="ui segment" id="chat" style="height:70%; padding: 0px; ">
                 <div id="output">
                         <% msgs.forEach(msg=>{ %>
-                                <p class="new_message"><strong><%= msg.UID %>:&nbsp&nbsp&nbsp </strong><%= msg.BODY %> <span> <%= msg.TIMESTAMP %> </span></p>
+                                <p class="new_message"><strong><%= msg.UID %>:&nbsp&nbsp&nbsp </strong><%= msg.BODY %> <span class="timestamp"> <%= msg.TIMESTAMP %> </span></p>
                         <% }) %>
                         
                 </div>

@@ -1,9 +1,9 @@
 (function($){
     $(document).ready(function(){
+        //initial setup and behavior
         $('#cpeIP').focus();
         $('#cpeIP').on('paste',function(){
             $('#wCOM').focus();
-            // e.stopPropagation();
         })
         $('#wCOM').on('paste',function(){
             $('#modemIP').focus()
@@ -40,10 +40,7 @@
             },
             dataContent: "application/json",
             success: function(data, status, jqXHR){
-                //do something with returned key
-                // console.log(data);
-                //insert returned string into element
-                //need to be textarea element in order for the copy to work
+               //populating the hidden textarea
                 $('#request_result').text(data);
             }
         })

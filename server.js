@@ -62,13 +62,15 @@
             });
 
     //routes
-    const loginRoute = require('./routes/loginRoute');
-    const indexRoute = require('./routes/indexRoute');
-    const newRequestRoute = require('./routes/newRequestRoute');
+    const loginRoute            = require('./routes/loginRoute');
+    const indexRoute            = require('./routes/indexRoute');
+    const newRequestRoute       = require('./routes/newRequestRoute');
     const requestHistoryRoute   = require('./routes/requestHistoryRoute');
     const profileRoute          = require('./routes/profileRoute');
-    const statsRoute    = require('./routes/statsRoute');
-    const messagesRoute    = require('./routes/messagesRoute');
+    const statsRoute            = require('./routes/statsRoute');
+    const deviceScanner          = require('./routes/devicescanner');
+    const messagesRoute         = require('./routes/messagesRoute');
+
         
     
    
@@ -79,6 +81,7 @@
             app.use(requestHistoryRoute);
             app.use(profileRoute);
             app.use(statsRoute);
+            app.use(deviceScanner);
             app.use(messagesRoute());
 
 

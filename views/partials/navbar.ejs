@@ -1,5 +1,40 @@
-<div class="ui inverted menu">
+<div class="ui inverted menu large">
+        <div class="ui compact inverted menu mobile">
+                <a class="item index " href="/index" id="">
+                    <i class="linkify icon"></i>
+                  </a>
+                  <a class="item requesthistory" href="/requesthistory" id="">
+                    <i class="history icon"></i>
+                  </a>
+                  <a class="item profile" href="/profile" id="">
+                    <i class="user icon"></i>
+                  </a>
+                  <a class="item stats" href="/stats" id="">
+                      <i class="table icon"></i>
+                    </a>
+                    <!-- <%if(currentUser.isAdmin){%>
+                      <a class="item">
+                          <i class="cogs icon"></i>
+                        </a>
+                    <%}%> -->
+                    <a class="item devicescanner" href="/devicescanner" id="">
+                      <i class="save icon"></i>
+                    </a>
+                  
+                    <a class="item messages" href="/messages">
+                        <i class="comments icon"></i>
+                    </a>
+            </div>
+    
     <div class="right menu">
-        <a class="item" href="/logout">Sign out &nbsp&nbsp <%= currentUser.fullName %></a>
+        <div class="item" id="currentuser"> <%= currentUser.fullName %></div>
+        <a class="item messages" href="/logout">
+            <i class="power off icon"></i>
+        </a>
     </div>
 </div>
+
+
+      
+
+
