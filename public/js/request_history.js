@@ -23,7 +23,8 @@
                     // console.log(data);
                     //insert returned string into element
                     //need to be textarea element in order for the copy to work
-                    $('#request_result_off').text(data);
+                    
+                    $('#request_result').text(data);
                     $('.off_container').html('<div class="ui red tiny button" id="off_key">Off key</div>'); 
                 }
             })
@@ -33,9 +34,8 @@
 
     //CONTINUE HERE!!!!!
     $('.still_on').on('click', function(){
-        if ($(this).find('#off_key')) {
-            return
-        }
+       $(this).find('.copy_off_key').prop('disabled', false);
+       $(this).find('.copy_off_key').text('Copy key!');
         var cpe = $(this).find('td.cpeip').html(),
             wc  = $(this).find('td.wc').html(),
             mip = $(this).find('td.modemip').html(),
@@ -45,12 +45,12 @@
         
         newRequest.sendRequest();
     })
-  
-    $('.off_container').on('click', '#off_key', function(e){
+    $('.copy_off_key').on('click', function(e){
+        e.preventDefault();
         new Clipboard('.copy');
-        $('#off_key').html('Closed'); 
+       location.reload();
+    })
 
-    })    
 })(window, jQuery)
     
    

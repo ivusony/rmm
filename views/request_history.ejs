@@ -27,13 +27,14 @@
                             <th>MODEM TYPE</th>
                             <th>DATE AND TIME</th>
                             <th>STATUS</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
                         <% let counter = requests.length%> %>    
                     <%requests.forEach(request=>{%>
                         <% if(request.isON){ %>
-                            <tr class="center aligned copy still_on" data-clipboard-target="#request_result_off">
+                            <tr class="center aligned copy still_on" data-clipboard-target="#request_result">
                         <% }else { %>
                             <tr class="center aligned"  >
                         <% } %>
@@ -45,7 +46,7 @@
                                 <td class="type"><%=request.MODEM%></td>
                                 <td><%=request.TIMESTAMP%></td>
                                 <%if(request.isON){%>
-                                        <td  class="ison negative off_container">Still open<i class="attention icon"></i></td>
+                                    <td><button class="ui tiny red button copy_off_key" disabled>Still on</button></td>
                                 <%}else{%>
                                     <td  class="ison positive">Closed</td>
                                 <%}%>
@@ -53,7 +54,6 @@
                         <%})%>
                     </table>
 
-                    <textarea id="request_result_off" style="position:absolute; left: -1500px"></textarea>
            
 </div>
 

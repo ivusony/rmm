@@ -1,4 +1,4 @@
-(function($){
+(function(global,$){
     $(document).ready(function(){
         //initial setup and behavior
         $('#cpeIP').focus();
@@ -140,4 +140,4 @@
 
     $('.ui.basic.modal').modal('show');
    
-})(jQuery)
+})(window,jQuery)
