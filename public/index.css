@@ -33,7 +33,7 @@ div.ui.menu{
     display: none;
 }
 
-@media only screen and (min-width:500px){
+@media only screen and (min-width:600px){
     .mobile {
         display: none !important
     }
@@ -41,7 +41,10 @@ div.ui.menu{
         width: calc(100% - 182px);
     }
 }
-@media only screen and (max-width:500px){
+@media only screen and (max-width:600px){
+    .item {
+        padding: 0.82857143em 1.04285714em !important;
+    }
     .sidebar {
         display: none !important
     }

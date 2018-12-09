@@ -25,100 +25,118 @@
             this.modemType = modemType,
             this.requestType = requestType
         }
+        sendRequest(){
+            $.ajax({
+                url: "/newrequest",
+                method: "POST",
+                data: {
+                    modemIP     :   this.modemip,
+                    wc          :   this.wc,
+                    cpeIP       :   this.cpeip,
+                    modemType   :   this.modemType,
+                    requestType :   this.requestType
+                },
+                dataContent: "application/json",
+                success: function(data, status, jqXHR){
+                   //populating the hidden textarea
+                    $('#request_result').text(data);
+                }
+            })
+        }
+        validateInput(){
+            for(var key in this){
+                this[key] = this[key].trim();
+                console.log(this[key]);
+            }
+        }
     }
 
-    Request.prototype.sendRequest = function(){
-        $.ajax({
-            url: "/newrequest",
-            method: "POST",
-            data: {
-                modemIP     :   this.modemip,
-                wc          :   this.wc,
-                cpeIP       :   this.cpeip,
-                modemType   :   this.modemType,
-                requestType :   this.requestType
-            },
-            dataContent: "application/json",
-            success: function(data, status, jqXHR){
-               //populating the hidden textarea
-                $('#request_result').text(data);
-            }
-        })
+    //building an object from input field values and setting the __proto__ link to Request.prototype
+    function inputElements (modemIP, writeCOM, cpeIP, modemType){
+        const inputs = Object.create(Request.prototype);
+        inputs.modemIP      = modemIP;
+        inputs.writeCOM     = writeCOM;
+        inputs.cpeIP        =   cpeIP;
+        inputs.modemType    =   modemType;
+        return inputs;
     }
-    //the first request for the ON key is made when the dropdown menu change is triggered
-    $('#request_btn_holder').on('click', '#request_btn_on', function(e){
-        e.preventDefault();
-        //checking if any of the input fields provided are empty, and if the select option is blank. If so, returning.
-        if ($('#modemIP').val()==='' || $('#wCOM').val()==='' || $('#cpeIP').val() === '' || $('#modemType').val() === 'select') {
-            return alert('Error 1.01. Aborting')
-        }
-        //If check is passed, constructing new object from the values passed
-        let newRequest = new Request($('#modemIP').val().trim(), $('#wCOM').val().trim(), $('#cpeIP').val().trim(), $('#modemType option:selected').val(), "aquilaOnKey");
-        //then calling the sendrequest method on the newly created object
-        newRequest.sendRequest();
-        //enabling the copy key button
-        $('#aquilaOnKey').prop('disabled', false);
-        $('#request_btn_on').prop('disabled', true);
-             
-    })
-    $('#request_btn_holder').on('click', '#request_btn_off' ,function(e){
-        console.log('BTN OFFFFFF')
-        e.preventDefault();
-            //copy already generated string from textarea
-            //make new request with the offkey parameter
-            let newRequest2 = new Request($('#modemIP').val().trim(), $('#wCOM').val().trim(), $('#cpeIP').val().trim(), $('#modemType option:selected').val(), "aquilaOffKey");
-            newRequest2.sendRequest();
-            //disable ON key button
-            $(this).prop('disabled', true);
-            // $('#aquilaOnKey').prop('disabled', true);
-            $('#aquilaOffKey').prop('disabled', false);
-    })
-    $('#aquilaOnKey').on('click', function(e){
-        e.preventDefault();
-            //copy already generated string from textarea
-            new Clipboard('.copy');
-            //make new request with the offkey parameter
-            //disable ON key button
-            $(this).prop('disabled', true);
-            //enable OFF key button
-            // $('#aquilaOffKey').prop('disabled', false);
-            $('#web-interface').prop('disabled', false);
-            $('#request_btn_holder').html('<button class=" fluid ui red button"  id="request_btn_off">REQUEST OFF</button>');
-            $(this).prop('disabled', true)
-    })
-    $('#aquilaOffKey').on('click', function(e){
-        e.preventDefault();
-            //copy the new request string from textarea
-            new Clipboard('.copy');
-            //disable OFF key button
-            $(this).prop('disabled', true);
-            $('#request_btn_off').prop('disabled', true);
-            //reset fields
-            $('#remote-page').attr('src', '');
-            $('#web-interface').text('Open device web interface');
-            resetFields();
-    })
-    $('#web-interface').click(function(e){
-        e.preventDefault();
-        $(this).text('Web interface below');
-        $(this).prop('disabled', true);
-        if($('#remote-page').hide()){
-            $('#remote-page').show();
-        }
-        $('#remote-page').attr('src', 'http://'+ $('#cpeIP').val().trim() + ':8080');
-    });   
-    function resetFields(){
-        $('#modemIP').val('');
-        $('#wCOM').val(''); 
-        $('#cpeIP').val('');
-        $('#modemType').val('select');
-        $('#aquilaOffKey').prop('disabled', true);
-        $('#remote-page').hide();
-        $('#web-interface').show().attr('disabled', true);
-        $('#request_btn_on').prop('disabled', true);
-        $('#web-interface').text('Open device web interface');
-        
+    
+    //Event handler callbacks object
+    const eventHandlerCallbacks = {
+        requestOn   :   function(e){
+                            e.preventDefault();
+                            const input = inputElements($('#modemIP').val(), $('#wCOM').val(), $('#cpeIP').val(), $('#modemType').val());
+                            input.validateInput(); //Request.prototype
+                            //If check is passed, constructing new object from the values passed
+                            const newRequest = new Request(input.modemIP, input.writeCOM, input.cpeIP, input.modemType, "aquilaOnKey");
+                            //then calling the sendrequest method on the newly created object
+                            newRequest.sendRequest();
+                            //enabling the copy key button
+                            $('#aquilaOnKey').prop('disabled', false);
+                            $('#request_btn_on').prop('disabled', true);
+                                
+                        },
+        requestOff  :   function(e){
+                            e.preventDefault();
+                            const input = inputElements($('#modemIP').val(), $('#wCOM').val(), $('#cpeIP').val(), $('#modemType').val());
+                            const newRequest = new Request(input.modemIP, input.writeCOM, input.cpeIP, input.modemType, "aquilaOffKey");
+                            newRequest.sendRequest();
+                            //disable ON key button
+                            $(this).prop('disabled', true);
+                            $('#aquilaOffKey').prop('disabled', false);
+                        },
+        copyOnKey   :   function(e){
+                            e.preventDefault();
+                            //copy already generated string from textarea
+                            new Clipboard('.copy');
+                            //disable ON key button
+                            $(this).prop('disabled', true);
+                            $('#web-interface').prop('disabled', false);
+                            //changing the request button to off
+                            $('#request_btn_holder').html('<button class=" fluid ui red button"  id="request_btn_off">REQUEST OFF</button>');
+                            $(this).prop('disabled', true)
+                        },
+        copyOffKey  :   function(e){
+                            e.preventDefault();
+                            //copy the new request string from textarea
+                            new Clipboard('.copy');
+                            //disable OFF key button
+                            $(this).prop('disabled', true);
+                            $('#request_btn_off').prop('disabled', true);
+                            //reset fields
+                            $('#remote-page').attr('src', '');
+                            $('#web-interface').text('Open device web interface');
+                            eventHandlerCallbacks.resetFields()
+                        },
+        openPage    :   function(e){
+                            e.preventDefault();
+                            $(this).text('Web interface below');
+                            $(this).prop('disabled', true);
+                            if($('#remote-page').hide()){
+                                $('#remote-page').show();
+                            }
+                            $('#remote-page').attr('src', 'http://'+ $('#cpeIP').val().trim() + ':8080');
+                        },
+        resetFields :   function(){
+                            $('#modemIP').val('');
+                            $('#wCOM').val(''); 
+                            $('#cpeIP').val('');
+                            $('#modemType').val('select');
+                            $('#aquilaOffKey').prop('disabled', true);
+                            $('#remote-page').hide();
+                            $('#web-interface').show().attr('disabled', true);
+                            $('#request_btn_on').prop('disabled', true);
+                            $('#web-interface').text('Open device web interface');
+                        }
     }
+   
+     //event handlers
+     $('#request_btn_holder').on('click', '#request_btn_on', eventHandlerCallbacks.requestOn);
+     $('#request_btn_holder').on('click', '#request_btn_off', eventHandlerCallbacks.requestOff);
+     $('#aquilaOnKey').on('click',   eventHandlerCallbacks.copyOnKey);
+     $('#aquilaOffKey').on('click', eventHandlerCallbacks.copyOffKey);
+     $('#web-interface').on('click', eventHandlerCallbacks.openPage); 
+ 
 
     $('.ui.basic.modal').modal('show');
    
