@@ -34,7 +34,7 @@
                         <% let counter = requests.length%> %>    
                     <%requests.forEach(request=>{%>
                         <% if(request.isON){ %>
-                            <tr class="center aligned copy still_on" data-clipboard-target="#request_result">
+                            <tr class="center aligned copy still_on" data-clipboard-target="#request_result" >
                         <% }else { %>
                             <tr class="center aligned"  >
                         <% } %>
@@ -46,7 +46,8 @@
                                 <td class="type"><%=request.MODEM%></td>
                                 <td><%=request.TIMESTAMP%></td>
                                 <%if(request.isON){%>
-                                    <td><button class="ui tiny red button copy_off_key" disabled>Still on</button></td>
+                                    <td data-tooltip="Click to enable" data-inverted="" data-position="left center"><button class="ui tiny red button copy_off_key" disabled>Still on</button>
+                                    </td>
                                 <%}else{%>
                                     <td  class="ison positive">Closed</td>
                                 <%}%>

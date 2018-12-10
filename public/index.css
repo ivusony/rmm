@@ -32,6 +32,9 @@ div.ui.menu{
 .profile_settings {
     display: none;
 }
+.copy_off_key {
+    width: 90px;
+}
 
 @media only screen and (min-width:600px){
     .mobile {
