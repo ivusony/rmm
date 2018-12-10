@@ -9,7 +9,7 @@
                 method: 'GET',
                 data: 'test',
                 success: function(data){
-                    $('.device_input_container').html(data)
+                    $('.device_input_container').hide().fadeIn().html(data)
                 }
             })
         }
