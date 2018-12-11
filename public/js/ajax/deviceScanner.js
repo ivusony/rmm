@@ -57,7 +57,7 @@
                                 temp.stb_casn = $(this).val();
 
                                 var stb_textarea = $("textarea[name='stb_serials']");
-                                    stb_textarea.val(stb_textarea.val()+temp.stb_serial+'\n');
+                                    stb_textarea.val(stb_textarea.val()+temp.stb_serial+';'+temp.stb_serial+'\n');
                                 var cdsn_textarea = $("textarea[name='cdsn_serials']");
                                     cdsn_textarea.val(cdsn_textarea.val()+temp.stb_casn.slice(0,-1)+'\n');
 
