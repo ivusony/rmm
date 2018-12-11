@@ -15,7 +15,7 @@
                 </div>       
 
         <div class="ui center aligned grid">
-                <div class="ten wide tablet five wide computer column profile_settings" style="display:none">
+                <div class="ten wide tablet seven wide computer column profile_settings" style="display:none">
                         <div class="ui mini form">
                                 <form action="/updateprofile?_method=PUT" method="POST">
                                         <div class="field">
@@ -29,6 +29,52 @@
                                         <div class="field">
                                                 <label>E-mail</label>
                                                 <input name="email" type="text"  value="<%= currentUser.email %>">
+                                        </div>
+                                        <div class="field">
+                                                        <label>Preferred keys</label>
+                                                        <div class="ui two column grid">
+                                                                <div class="row">
+                                                                        <div class="column">
+                                                                                <label for="">For Aquila via Putty</label>
+                                                                        </div>
+                                                                        <div class="column">
+                                                                                <label for="">For CMD in Windows</label>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="column">
+                                                                                <input value="aquila" name="preffered_keys" type="radio" disabled>
+                                                                        </div>
+                                                                        <div class="column">
+                                                                                <input value="cmd" name="preffered_keys" type="radio" disabled>
+                                                                        </div>
+                                                                 </div>
+                                                                
+                                                        </div>
+                                                        
+                                        </div>
+                                        <div class="field">
+                                                        <label>Remote web interface</label>
+                                                        <div class="ui two column grid">
+                                                                <div class="row">
+                                                                        <div class="column">
+                                                                                <label for="">Open in same window</label>
+                                                                        </div>
+                                                                        <div class="column">
+                                                                                <label for="">Open in new tab</label>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                        <div class="column">
+                                                                                <input value="iframe" name="web_interface" type="radio" disabled>
+                                                                        </div>
+                                                                        <div class="column">
+                                                                                <input value="new_tab" name="web_interface" type="radio" disabled>
+                                                                        </div>
+                                                                 </div>
+                                                                
+                                                        </div>
+                                                        
                                         </div>
                                         <div class="field">
                                                 <label>Current password</label>
