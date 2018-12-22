@@ -49,18 +49,48 @@
 
     //stb event callbacks
     const stbEventCallbacks = {
-        stb_serial : function(){
-            temp.stb_serial = $(this).val();
-            $("input[name='stb_casn']").focus();
-        },
-        stb_casn : function(){
-            temp.stb_casn = $(this).val();
-            console.log(temp)
-        }
+        stb_serial      :   function(){
+                                temp.stb_serial = $(this).val();
+                                $("input[name='stb_casn']").focus();
+                            },
+        stb_casn        :  function(){
+                                temp.stb_casn = $(this).val();
+
+                                var stb_textarea = $("textarea[name='stb_serials']");
+                                    stb_textarea.val(stb_textarea.val()+temp.stb_serial+';'+temp.stb_serial+'\n');
+                                var cdsn_textarea = $("textarea[name='cdsn_serials']");
+                                    cdsn_textarea.val(cdsn_textarea.val()+temp.stb_casn.slice(0,-1)+'\n');
+
+                                
+                                
+                                stbEventCallbacks.clearFields();
+                            },
+        clearFields     :   function(){
+                                $("input[name='stb_serial']").val('');
+                                $("input[name='stb_casn']").val('');
+                                $("input[name='stb_serial']").focus();
+                             }
     }
     
     //stb event handlers
     $('.device_input_container').on('change', "input[name='stb_serial']" , stbEventCallbacks.stb_serial);
     $('.device_input_container').on('change', "input[name='stb_casn']" , stbEventCallbacks.stb_casn)
 
+    //copy modems
+    $('.device_input_container').on('click', "#copy_modems" ,function(e){
+        e.preventDefault();
+        new Clipboard('.copy')
+    })
+
+    //copy stb
+    $('.device_input_container').on('click', "#copy_stb" ,function(e){
+        e.preventDefault();
+        new Clipboard('.copy')
+    })
+
+    //copy stb
+    $('.device_input_container').on('click', "#copy_cdsn" ,function(e){
+        e.preventDefault();
+        new Clipboard('.copy')
+    })
 }

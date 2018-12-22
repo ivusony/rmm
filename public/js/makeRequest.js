@@ -74,6 +74,9 @@
                             //enabling the copy key button
                             $('#aquilaOnKey').prop('disabled', false);
                             $('#request_btn_on').prop('disabled', true);
+
+                            $("#web-interface-tab").prop('target', '_blank');
+                            $("#web-interface-tab").prop('href', 'http://'+input.cpeIP+':8080');
                                 
                         },
         requestOff  :   function(e){
@@ -91,7 +94,7 @@
                             new Clipboard('.copy');
                             //disable ON key button
                             $(this).prop('disabled', true);
-                            $('#web-interface').prop('disabled', false);
+                            $('#web-interface-window').prop('disabled', false);
                             //changing the request button to off
                             $('#request_btn_holder').html('<button class=" fluid ui red button"  id="request_btn_off">REQUEST OFF</button>');
                             $(this).prop('disabled', true)
@@ -105,10 +108,10 @@
                             $('#request_btn_off').prop('disabled', true);
                             //reset fields
                             $('#remote-page').attr('src', '');
-                            $('#web-interface').text('Open device web interface');
+                            $('#web-interface-window').text('Open device web interface');
                             eventHandlerCallbacks.resetFields()
                         },
-        openPage    :   function(e){
+        openPageBelow    :   function(e){
                             e.preventDefault();
                             $(this).text('Web interface below');
                             $(this).prop('disabled', true);
@@ -124,9 +127,9 @@
                             $('#modemType').val('select');
                             $('#aquilaOffKey').prop('disabled', true);
                             $('#remote-page').hide();
-                            $('#web-interface').show().attr('disabled', true);
+                            $('#web-interface-window').show().attr('disabled', true);
                             $('#request_btn_on').prop('disabled', true);
-                            $('#web-interface').text('Open device web interface');
+                            $('#web-interface-window').text('Open device web interface');
                         }
     }
    
@@ -135,7 +138,7 @@
      $('#request_btn_holder').on('click', '#request_btn_off', eventHandlerCallbacks.requestOff);
      $('#aquilaOnKey').on('click',   eventHandlerCallbacks.copyOnKey);
      $('#aquilaOffKey').on('click', eventHandlerCallbacks.copyOffKey);
-     $('#web-interface').on('click', eventHandlerCallbacks.openPage); 
+     $('#web-interface-window').on('click', eventHandlerCallbacks.openPageBelow);
  
 
     $('.ui.basic.modal').modal('show');

@@ -52,9 +52,16 @@
     <!-- <h4 class="ui horizontal divider header" style="padding: 3% 15%">
         divider
     </h4> -->
+<% if(currentUser.webInterface==='window'){ %>
     <div class="ui  centered grid" style="padding-top: 40px;">
-            <button class="ui tiny button" id="web-interface" disabled>Open device web interface </button>
+            <button class="ui tiny button" id="web-interface-window" disabled>Open device web interface below </button>
     </div>
+<% }else if(currentUser.webInterface==='tab'){ %>
+    <div class="ui  centered grid" style="padding-top: 40px;">
+            <a  id="web-interface-tab" >Open device web interface in new tab </a>
+    </div>
+<% } %>    
+    
     
     <div class="ui grid">
         <div id="frame_holder" style="width: 1100px; min-height: 600px; margin-left: auto; margin-right: auto">

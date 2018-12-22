@@ -18,7 +18,9 @@ var UserSchema = new mongoose.Schema({
     fullName: String,
     lastActive: String,
     online: Boolean,
-    firstLogin: Boolean
+    firstLogin: Boolean,
+    preferredKeys: String,
+    webInterface: String
 });
 
 UserSchema.plugin(passportLocalMongoose);
